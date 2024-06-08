@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,6 @@ public class UploadFragment extends Fragment implements IFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -48,9 +48,9 @@ public class UploadFragment extends Fragment implements IFragment{
         select_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent= new Intent();
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                intent.setType("image/*");
+//                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(intent, PICK_IMAGE_REQUEST);
+                Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
             }
         });
 

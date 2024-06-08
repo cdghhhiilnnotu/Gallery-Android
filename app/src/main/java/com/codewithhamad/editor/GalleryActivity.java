@@ -25,6 +25,7 @@ import com.dsphotoeditor.sdk.utils.DsPhotoEditorConstants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
+import java.util.List;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -87,17 +88,38 @@ public class GalleryActivity extends AppCompatActivity {
 
     public void loadFragment(Fragment fragment, boolean isAppInitialzed){
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //        try {
-//            Fragment currentFragment;
-//            currentFragment = fragmentManager.findFragmentById(R.id.aplay_fragment);
-//            fragmentTransaction.remove(currentFragment);
-//            currentFragment = fragmentManager.findFragmentById(R.id.vplay_fragment);
-//            fragmentTransaction.remove(currentFragment);
+//            IFragment currentFragment;
+//            currentFragment = (IFragment) fragmentManager.findFragmentById(R.id.aplay_fragment);
+//            currentFragment.OnFragmentChanged();
+////            fragmentTransaction.remove(currentFragment);
+//
 //        }
 //        catch (Exception e){
-//            Log.e("TAG", "response 33: "+ e);
+//            Log.e("TAG F", "response 33: "+ e);
 //        }
+//        try {
+//            IFragment currentFragment;
+//            currentFragment = (IFragment) fragmentManager.findFragmentById(R.id.vplay_fragment);
+////            fragmentTransaction.remove(currentFragment);
+//            currentFragment.OnFragmentChanged();
+//        }
+//        catch (Exception e){
+//            Log.e("TAG F", "response 33: "+ e);
+//        }
+        List<Fragment> allFragments = getSupportFragmentManager().getFragments();
+        for (Fragment frag : allFragments) {
+            if (frag.isVisible()) {
+                // This is your current visible fragment
+                IFragment currentFrag = (IFragment) frag;
+                currentFrag.OnFragmentChanged();
+//                Log.e("TAG F", "response 33: "+ currentFrag);
+
+            }
+        }
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
         if (isAppInitialzed){
             fragmentTransaction.add(R.id.gallery_frame, fragment);
         }

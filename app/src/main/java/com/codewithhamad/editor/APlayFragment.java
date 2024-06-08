@@ -166,6 +166,7 @@ public class APlayFragment extends Fragment implements IFragment{
     public void OnFragmentChanged() {
         try {
             media_player.stop();
+//            Toast.makeText(getContext(), "Hello A", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e){
 

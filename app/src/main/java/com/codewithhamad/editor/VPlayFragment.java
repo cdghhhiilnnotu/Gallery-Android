@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 public class VPlayFragment extends Fragment implements IFragment{
@@ -50,6 +51,7 @@ public class VPlayFragment extends Fragment implements IFragment{
     public void OnFragmentChanged() {
         try {
             videoView.stopPlayback();
+//            Toast.makeText(getContext(), "Hello V", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e){
 
