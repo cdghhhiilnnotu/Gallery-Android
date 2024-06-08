@@ -8,16 +8,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.codewithhamad.editor.databinding.ActivityGalleryBinding;
 import com.dsphotoeditor.sdk.activity.DsPhotoEditorActivity;
 import com.dsphotoeditor.sdk.utils.DsPhotoEditorConstants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.File;
 
 public class GalleryActivity extends AppCompatActivity {
 
@@ -36,10 +43,13 @@ public class GalleryActivity extends AppCompatActivity {
                     loadFragment(new ImagesFragment(GalleryActivity.this), false);
                     break;
                 case R.id.menu_videos_btn:
-                    loadFragment(new VideosFragment(), false);
+                    loadFragment(new VideosFragment(GalleryActivity.this), false);
                     break;
                 case R.id.menu_audios_btn:
-                    loadFragment(new AudiosFragment(), false);
+                    loadFragment(new AudiosFragment(GalleryActivity.this), false);
+                    break;
+                case R.id.menu_upload_btn:
+                    loadFragment(new UploadFragment(GalleryActivity.this), false);
                     break;
             }
             return true;
@@ -47,7 +57,7 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     public void change(String url_image){
-        Uri uri= Uri.parse(url_image);
+        Uri uri= Uri.parse(GalleryItem.base_url + url_image);
         Log.e("TAG", "response 33: "+ url_image );
 
         Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
@@ -75,14 +85,26 @@ public class GalleryActivity extends AppCompatActivity {
 
     }
 
-    private void loadFragment(Fragment fragment, boolean isAppInitialzed){
+    public void loadFragment(Fragment fragment, boolean isAppInitialzed){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        try {
+//            Fragment currentFragment;
+//            currentFragment = fragmentManager.findFragmentById(R.id.aplay_fragment);
+//            fragmentTransaction.remove(currentFragment);
+//            currentFragment = fragmentManager.findFragmentById(R.id.vplay_fragment);
+//            fragmentTransaction.remove(currentFragment);
+//        }
+//        catch (Exception e){
+//            Log.e("TAG", "response 33: "+ e);
+//        }
         if (isAppInitialzed){
             fragmentTransaction.add(R.id.gallery_frame, fragment);
         }
         fragmentTransaction.replace(R.id.gallery_frame, fragment);
         fragmentTransaction.commit();
+
+
     }
 
 }

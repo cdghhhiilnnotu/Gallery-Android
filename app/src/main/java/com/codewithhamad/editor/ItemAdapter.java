@@ -2,6 +2,7 @@ package com.codewithhamad.editor;
 
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -30,12 +31,12 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder>{
 
     private ArrayList<GalleryItem> items = new ArrayList<>();
-    private Context context;
-    private GalleryActivity mainGallery;
+    private ItemInterface itemInterface;
+    private GalleryActivity galleryActivity;
 
-    public ItemAdapter(Context context, GalleryActivity gallery){
-        this.mainGallery = gallery;
-        this.context = context;
+    public ItemAdapter(ItemInterface itemInterface, GalleryActivity gallery){
+        this.galleryActivity = gallery;
+        this.itemInterface = itemInterface;
     }
 
     @NonNull
@@ -52,12 +53,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         GalleryItem item = items.get(position);
         holder.name.setText(item.item_name);
-        Picasso.get().load(GalleryItem.base_url + item.item_url).into(holder.image);
+        Picasso.get().load(GalleryItem.base_url + item.item_theme).into(holder.image);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mainGallery.change(GalleryItem.base_url + item.item_url);
+                itemInterface.item_onclick(item);
             }
         });
 
@@ -75,7 +76,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder{
-        //        private TextView txtName, txtEmail;
+
         private ImageView image;
         private TextView name;
         private CardView parent;
