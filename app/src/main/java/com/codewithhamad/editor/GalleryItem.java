@@ -2,6 +2,9 @@ package com.codewithhamad.editor;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GalleryItem {
 
     static String base_url = "https://cdghhhiilnnotu.github.io/Gallery-Server/";
@@ -43,6 +46,18 @@ public class GalleryItem {
                 "Mô tả: " + this.item_desc + "\n";
     }
 
+    public Map<String, Object> toMapImage() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("image_id", item_id);
+        map.put("image_name", item_name);
+        map.put("image_url", item_url);
+        map.put("theme_url", item_theme);
+        map.put("image_description", item_desc);
+        map.put("upload_date", item_upload);
+        map.put("view_count", item_view);
+        map.put("download_count", item_download);
+        return map;
+    }
 
 }
 

@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -26,7 +28,10 @@ public interface GalleryRequest {
     Call<ArrayList<GalleryItem>> getAduios();
 
     @Multipart
-    @POST("images/upload")
+    @POST("/images/upload")
     Call<ResponseBody> postImage(@Part MultipartBody.Part file);
+
+    @POST("/images/api")
+    Call<ResponseBody> postYourData(@Body GalleryItem data);
 
 }
