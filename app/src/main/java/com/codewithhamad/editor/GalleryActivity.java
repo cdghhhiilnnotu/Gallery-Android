@@ -57,7 +57,7 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
-    public void change(String url_image){
+    public void onActivityChange(String url_image){
         Uri uri= Uri.parse(GalleryItem.base_url + url_image);
         Log.e("TAG", "response 33: "+ url_image );
 
@@ -88,33 +88,11 @@ public class GalleryActivity extends AppCompatActivity {
 
     public void loadFragment(Fragment fragment, boolean isAppInitialzed){
         FragmentManager fragmentManager = getSupportFragmentManager();
-//        try {
-//            IFragment currentFragment;
-//            currentFragment = (IFragment) fragmentManager.findFragmentById(R.id.aplay_fragment);
-//            currentFragment.OnFragmentChanged();
-////            fragmentTransaction.remove(currentFragment);
-//
-//        }
-//        catch (Exception e){
-//            Log.e("TAG F", "response 33: "+ e);
-//        }
-//        try {
-//            IFragment currentFragment;
-//            currentFragment = (IFragment) fragmentManager.findFragmentById(R.id.vplay_fragment);
-////            fragmentTransaction.remove(currentFragment);
-//            currentFragment.OnFragmentChanged();
-//        }
-//        catch (Exception e){
-//            Log.e("TAG F", "response 33: "+ e);
-//        }
         List<Fragment> allFragments = getSupportFragmentManager().getFragments();
         for (Fragment frag : allFragments) {
             if (frag.isVisible()) {
-                // This is your current visible fragment
                 IFragment currentFrag = (IFragment) frag;
                 currentFrag.OnFragmentChanged();
-//                Log.e("TAG F", "response 33: "+ currentFrag);
-
             }
         }
 

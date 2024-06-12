@@ -88,7 +88,7 @@ public class ImagesFragment extends Fragment implements ItemInterface, IFragment
     @Override
     public void item_onclick(GalleryItem item) {
 
-        galleryActivity.change(item.item_url);
+        galleryActivity.onActivityChange(item.item_url);
     }
 
     public void post_item(File file){

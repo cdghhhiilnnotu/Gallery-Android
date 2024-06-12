@@ -136,8 +136,6 @@ public class UploadFragment extends Fragment implements IFragment{
 
             }
         });
-
-
     }
 
     public static String getRealPathFromURI(Context context, Uri uri) {
