@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -64,10 +65,10 @@ public class AudiosFragment extends Fragment implements ItemInterface, IFragment
                     return;
                 }
                 item_list = response.body();
-                ItemAdapter itemAdapter = new ItemAdapter(AudiosFragment.this, galleryActivity);
+                ItemAdapter itemAdapter = new ItemAdapter(AudiosFragment.this, galleryActivity, R.layout.audio_item);
                 itemAdapter.setContacts(item_list);
                 galleryView.setAdapter(itemAdapter);
-                galleryView.setLayoutManager(new GridLayoutManager(AudiosFragment.this.getContext(), 2));
+                galleryView.setLayoutManager(new LinearLayoutManager(AudiosFragment.this.getContext()));
             }
 
             @Override

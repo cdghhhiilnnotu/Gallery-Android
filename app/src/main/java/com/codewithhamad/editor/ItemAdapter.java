@@ -33,16 +33,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private ArrayList<GalleryItem> items = new ArrayList<>();
     private ItemInterface itemInterface;
     private GalleryActivity galleryActivity;
+    private int layout_resource;
 
-    public ItemAdapter(ItemInterface itemInterface, GalleryActivity gallery){
+    public ItemAdapter(ItemInterface itemInterface, GalleryActivity gallery, int layout_res){
         this.galleryActivity = gallery;
+        layout_resource = layout_res;
         this.itemInterface = itemInterface;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_item, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layout_resource, parent,false);
         ItemViewHolder holder = new ItemViewHolder(view);
 
         return holder;
@@ -52,7 +54,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         GalleryItem item = items.get(position);
-        holder.name.setText(item.item_name);
+        try {
+            holder.name.setText(item.item_name);
+
+        }
+        catch (Exception e){
+
+        }
         try{
             Picasso.get().load(GalleryItem.base_url + item.item_theme).into(holder.image);
         }
@@ -88,10 +96,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private CardView parent;
         public ItemViewHolder(@NonNull View itemView){
             super(itemView);
-            parent = itemView.findViewById(R.id.parent);
+            parent = itemView.findViewById(R.id.item_parent);
 
-            image = itemView.findViewById(R.id.image_item);
-            name = itemView.findViewById(R.id.txt_name);
+            image = itemView.findViewById(R.id.item_theme);
+            try{
+                name = itemView.findViewById(R.id.item_name);
+            }
+            catch (Exception e){
+
+            }
         }
     }
 

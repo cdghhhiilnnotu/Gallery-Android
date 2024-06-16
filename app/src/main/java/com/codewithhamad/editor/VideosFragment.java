@@ -63,10 +63,10 @@ public class VideosFragment extends Fragment implements ItemInterface, IFragment
                     return;
                 }
                 item_list = response.body();
-                ItemAdapter itemAdapter = new ItemAdapter(VideosFragment.this, galleryActivity);
+                ItemAdapter itemAdapter = new ItemAdapter(VideosFragment.this, galleryActivity, R.layout.video_item);
                 itemAdapter.setContacts(item_list);
                 galleryView.setAdapter(itemAdapter);
-                galleryView.setLayoutManager(new GridLayoutManager(VideosFragment.this.getContext(), 2));
+                galleryView.setLayoutManager(new GridLayoutManager(VideosFragment.this.getContext(), 1));
             }
 
             @Override

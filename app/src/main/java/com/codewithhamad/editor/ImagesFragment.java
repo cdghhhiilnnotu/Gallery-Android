@@ -70,10 +70,10 @@ public class ImagesFragment extends Fragment implements ItemInterface, IFragment
                     return;
                 }
                 item_list = response.body();
-                ItemAdapter itemAdapter = new ItemAdapter((ItemInterface) ImagesFragment.this, galleryActivity);
+                ItemAdapter itemAdapter = new ItemAdapter((ItemInterface) ImagesFragment.this, galleryActivity, R.layout.image_item);
                 itemAdapter.setContacts(item_list);
                 galleryView.setAdapter(itemAdapter);
-                galleryView.setLayoutManager(new GridLayoutManager(ImagesFragment.this.getContext(), 2));
+                galleryView.setLayoutManager(new GridLayoutManager(ImagesFragment.this.getContext(), 4));
             }
 
             @Override
