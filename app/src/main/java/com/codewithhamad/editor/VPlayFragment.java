@@ -15,9 +15,18 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.PlayerView;
+
+import java.util.Objects;
+
 public class VPlayFragment extends Fragment implements IFragment{
 
     VideoView videoView;
+    SimpleExoPlayer player;
+    PlayerView playerView;
     Button speedBtn;
     GalleryActivity galleryActivity;
     GalleryItem item;
@@ -35,26 +44,34 @@ public class VPlayFragment extends Fragment implements IFragment{
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_v_play, container, false);
 
-        videoView = view.findViewById(R.id.video_display);
         speedBtn = view.findViewById(R.id.video_speed_btn);
-        Uri uri = Uri.parse(GalleryConstants.gallery_url + item.item_url);
-        videoView.setVideoURI(uri);
-        videoView.start();
+        speedBtn.setText(String.valueOf(listOfSpeeds[indexOfSpeed % 5]) + "x");
 
-        MediaController mediaController = new MediaController(getContext());
-        videoView.setMediaController(mediaController);
+        Uri uri = Uri.parse(GalleryConstants.gallery_url + item.item_url);
+
+        player = new SimpleExoPlayer.Builder(Objects.requireNonNull(getContext())).build();
+        player.setMediaItem(MediaItem.fromUri(uri));
+        player.prepare();
+
+        playerView = view.findViewById(R.id.video_display);
+        playerView.setPlayer(player);
 
         speedBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 indexOfSpeed++;
-                speedBtn.setText(String.valueOf(listOfSpeeds[indexOfSpeed % 5]) + "x");
+                float speed = listOfSpeeds[indexOfSpeed % 5];
+                speedBtn.setText(String.valueOf(speed) + "x");
+                PlaybackParameters params = new PlaybackParameters(speed, 1.0f);
+
+                player.setPlaybackParameters(params);
             }
         });
 
@@ -64,8 +81,13 @@ public class VPlayFragment extends Fragment implements IFragment{
     @Override
     public void OnFragmentChanged() {
         try {
-            videoView.stopPlayback();
+//            videoView.stopPlayback();
 //            Toast.makeText(getContext(), "Hello V", Toast.LENGTH_SHORT).show();
+            if (player != null) {
+                player.stop();
+                player.release();
+                player = null;
+            }
         }
         catch (Exception e){
 

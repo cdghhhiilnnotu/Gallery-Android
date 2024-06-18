@@ -9,6 +9,7 @@
     tools:context=".APlayFragment">
 
     <ImageView
+        android:id="@+id/audios_theme"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:src="@drawable/ic_music_24"
@@ -81,6 +82,12 @@
             android:id="@+id/btn_ff"
             android:layout_margin="10dp"
             android:src="@drawable/ic_ff_24"/>
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/btn_speed"
+            android:text="1.0x"/>
 
     </LinearLayout>
 
