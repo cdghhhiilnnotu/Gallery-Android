@@ -27,12 +27,7 @@ public class AudiosFragment extends Fragment implements ItemInterface, IFragment
     private RecyclerView galleryView;
     private ArrayList<GalleryItem> item_list;
 
-    public AudiosFragment() {
-        // Required empty public constructor
-    }
-
     public AudiosFragment(GalleryActivity gallery) {
-        // Required empty public constructor
         galleryActivity = gallery;
     }
 
@@ -51,7 +46,7 @@ public class AudiosFragment extends Fragment implements ItemInterface, IFragment
         galleryView = view.findViewById(R.id.gallery_audios_view);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://thanhduong123.pythonanywhere.com/")
+                .baseUrl(GalleryConstants.server_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

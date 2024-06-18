@@ -62,10 +62,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         }
         try{
-            Picasso.get().load(GalleryItem.base_url + item.item_theme).into(holder.image);
+            Picasso.get().load(GalleryConstants.gallery_url + item.item_theme).into(holder.image);
         }
         catch (Exception e){
-            Picasso.get().load("https://thanhduong123.pythonanywhere.com/images/i0000000115.jpg").into(holder.image);
+            Picasso.get().load(GalleryConstants.server_url + "images/i0000000115.jpg").into(holder.image);
 
         }
 

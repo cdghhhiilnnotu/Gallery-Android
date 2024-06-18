@@ -59,20 +59,6 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
-    public void onActivityChange(String url_image){
-        Uri uri= Uri.parse(GalleryItem.base_url + url_image);
-        Log.e("TAG", "response 33: "+ url_image );
-
-        Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
-        dsPhotoEditorIntent.setData(uri);
-
-        dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY, "picaso");
-
-        int[] toolsToHide = {DsPhotoEditorActivity.TOOL_ORIENTATION};
-        dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_TOOLS_TO_HIDE, toolsToHide);
-        startActivityForResult(dsPhotoEditorIntent, 200);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -86,6 +72,36 @@ public class GalleryActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void onEditImage(String url_image){
+        Uri uri= Uri.parse(GalleryConstants.gallery_url + url_image);
+        Log.e("TAG", "response 33: "+ url_image );
+
+        Intent dsPhotoEditorIntent = new Intent(this, DsPhotoEditorActivity.class);
+        dsPhotoEditorIntent.setData(uri);
+
+        dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_OUTPUT_DIRECTORY, "picaso");
+
+        int[] toolsToHide = {
+//                DsPhotoEditorActivity.TOOL_FILTER,
+                DsPhotoEditorActivity.TOOL_FRAME,
+                DsPhotoEditorActivity.TOOL_ROUND,
+//                DsPhotoEditorActivity.TOOL_EXPOSURE,
+                DsPhotoEditorActivity.TOOL_CONTRAST,
+                DsPhotoEditorActivity.TOOL_VIGNETTE,
+//                DsPhotoEditorActivity.TOOL_CROP,
+//                DsPhotoEditorActivity.TOOL_ORIENTATION,
+                DsPhotoEditorActivity.TOOL_SATURATION,
+                DsPhotoEditorActivity.TOOL_SHARPNESS,
+                DsPhotoEditorActivity.TOOL_WARMTH
+//                DsPhotoEditorActivity.TOOL_PIXELATE,
+//                DsPhotoEditorActivity.TOOL_DRAW,
+//                DsPhotoEditorActivity.TOOL_STICKER,
+//                DsPhotoEditorActivity.TOOL_TEXT
+        };
+        dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_TOOLS_TO_HIDE, toolsToHide);
+        startActivityForResult(dsPhotoEditorIntent, 200);
     }
 
     public void loadFragment(Fragment fragment, boolean isAppInitialzed){
@@ -105,8 +121,6 @@ public class GalleryActivity extends AppCompatActivity {
         }
         fragmentTransaction.replace(R.id.gallery_frame, fragment);
         fragmentTransaction.commit();
-
-
     }
 
 }

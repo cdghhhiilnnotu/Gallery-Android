@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GalleryItem {
-
-    static String base_url = "https://cdghhhiilnnotu.github.io/Gallery-Server/";
     @SerializedName(value="image_id", alternate={"video_id", "audio_id"})
     String item_id;
     @SerializedName(value="image_name", alternate={"video_name", "audio_name"})

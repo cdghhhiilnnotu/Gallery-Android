@@ -48,7 +48,7 @@ public class UploadFragment extends Fragment implements IFragment{
         // Required empty public constructor
         galleryActivity = gallery;
         this.retrofit= new Retrofit.Builder()
-                .baseUrl("https://thanhduong123.pythonanywhere.com/")
+                .baseUrl(GalleryConstants.server_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

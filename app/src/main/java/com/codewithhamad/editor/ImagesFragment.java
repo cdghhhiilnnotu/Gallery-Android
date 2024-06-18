@@ -41,7 +41,7 @@ public class ImagesFragment extends Fragment implements ItemInterface, IFragment
         // Required empty public constructor
         galleryActivity = gallery;
         this.retrofit= new Retrofit.Builder()
-                .baseUrl("https://thanhduong123.pythonanywhere.com/")
+                .baseUrl(GalleryConstants.server_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -88,33 +88,8 @@ public class ImagesFragment extends Fragment implements ItemInterface, IFragment
     @Override
     public void item_onclick(GalleryItem item) {
 
-        galleryActivity.onActivityChange(item.item_url);
+        galleryActivity.onEditImage(item.item_url);
     }
-
-    public void post_item(File file){
-        // Create a request body with file and image media type
-        RequestBody fileReqBody = RequestBody.create(MediaType.parse("image/*"), file);
-
-        // Create MultipartBody.Part using file request-body,file name and part name
-        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), fileReqBody);
-
-        GalleryRequest service = retrofit.create(GalleryRequest.class);
-        Call<ResponseBody> call = service.postImage(part);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                // Handle the response from the server
-                Toast.makeText(getContext(), "Successfull!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // Handle the failure
-                Toast.makeText(getContext(), "Fail!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 
     @Override
     public void OnFragmentChanged() {

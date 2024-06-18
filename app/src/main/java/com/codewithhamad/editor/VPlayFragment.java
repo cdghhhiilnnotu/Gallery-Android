@@ -36,8 +36,7 @@ public class VPlayFragment extends Fragment implements IFragment{
         View view = inflater.inflate(R.layout.fragment_v_play, container, false);
 
         videoView = view.findViewById(R.id.video_display);
-        Log.e("TAG", "response 33: "+ GalleryItem.base_url + item.item_url);
-        Uri uri = Uri.parse(GalleryItem.base_url + item.item_url);
+        Uri uri = Uri.parse(GalleryConstants.gallery_url + item.item_url);
         videoView.setVideoURI(uri);
         videoView.start();
 

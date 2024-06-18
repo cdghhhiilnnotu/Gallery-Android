@@ -58,7 +58,7 @@ public class APlayFragment extends Fragment implements IFragment{
         btn_ff = view.findViewById(R.id.btn_ff);
 
         media_player = MediaPlayer.create(view.getContext(),
-                Uri.parse(GalleryItem.base_url + item.item_url));
+                Uri.parse(GalleryConstants.gallery_url + item.item_url));
 
         runnable = new Runnable() {
             @Override
@@ -166,7 +166,6 @@ public class APlayFragment extends Fragment implements IFragment{
     public void OnFragmentChanged() {
         try {
             media_player.stop();
-//            Toast.makeText(getContext(), "Hello A", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e){
 

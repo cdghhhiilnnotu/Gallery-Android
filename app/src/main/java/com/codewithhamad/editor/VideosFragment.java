@@ -49,7 +49,7 @@ public class VideosFragment extends Fragment implements ItemInterface, IFragment
         galleryView = view.findViewById(R.id.gallery_videos_view);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://thanhduong123.pythonanywhere.com/")
+                .baseUrl(GalleryConstants.server_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
