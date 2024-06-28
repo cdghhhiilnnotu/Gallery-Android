@@ -11,5 +11,6 @@
   - Java: Programming language for the Android application.
   - Android Studio: Integrated development environment (IDE) for Android applications.
   - DsPhotoEditor: Photo editing library for devices with API 30.
+  - Retrofit: GET and POST to Server
 ## Notes:
   The server URL is stored in the GalleryConstants file.
