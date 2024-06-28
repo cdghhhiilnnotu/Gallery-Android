@@ -1,16 +1,15 @@
-# Xây dựng ứng dụng Android đa phương tiện thể thao
-## Mô tả ứng dụng:
-  Ứng dụng được xây dựng bằng Java và Android Studio.
-  Hoạt động chính diễn ra trong GalleryActivity.
-  GalleryActivity bao gồm:
-    FrameLayout: Hiển thị các Fragment theo lựa chọn từ BottomMenu.
-    BottomMenu: Chứa các nút điều hướng đến các Fragment (Video, Image, Audio).
-  Mỗi Fragment (Video, Image, Audio) hiển thị nội dung theo nhiều kiểu sắp xếp khác nhau.
-  FragmentUpload cho phép người dùng tải tệp lên Server.
-## Công nghệ sử dụng:
-  Java: Ngôn ngữ lập trình cho ứng dụng Android.
-  Android Studio: Môi trường phát triển tích hợp (IDE) cho ứng dụng Android.
-  DsPhotoEditor: Thư viện chỉnh sửa ảnh cho thiết bị có API 30 trở lên.
-## Lưu ý:
-URL Server được lưu trữ trong tệp GalleryConstants.
-
+# Building a Sports Multimedia Android App
+## App Description:
+  The application is built using Java and Android Studio.
+  The main activity takes place in GalleryActivity.
+  GalleryActivity includes:
+    FrameLayout: Displays fragments based on selections from the BottomMenu.
+    BottomMenu: Contains buttons for navigating to different fragments (Video, Image, Audio).
+  Each fragment (Video, Image, Audio) displays content in various sorting styles.
+  FragmentUpload allows users to upload files to the server.
+## Technologies Used:
+  Java: Programming language for the Android application.
+  Android Studio: Integrated development environment (IDE) for Android applications.
+  DsPhotoEditor: Photo editing library for devices with API 30.
+## Notes:
+  The server URL is stored in the GalleryConstants file.
